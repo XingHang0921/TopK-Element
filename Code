@@ -1,0 +1,15 @@
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        count = {}
+        frequency = [[] for i in range(len(nums) + 1)]
+        top_k_frequency = []
+
+        for num in nums:
+            count[num] = 1 + count.get(num,0)
+        for num,freq in count.items():
+            frequency[freq].append(num)
+        for i in range(len(frequency)-1, 0, -1):
+            for num in frequency[i]:
+                top_k_frequency.append(num)
+                if(len(top_k_frequency) == k ):
+                    return top_k_frequency
